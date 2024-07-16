@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
@@ -16,11 +17,36 @@ namespace EshopOnWebTaskFunctionAp
         }
 
         [Function("Function1")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
+        public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
         {
-            //var body = JsonSerializer.Deserialize(req.Body);
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
+            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+
+            string Connection = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+            string containerName = Environment.GetEnvironmentVariable("Container-name");
+
+            var blobClient = new BlobContainerClient(Connection, containerName);
+
+            var orderModel = JsonSerializer.Deserialize<OrderModel>(requestBody);
+
+            Stream orderModelToUpload = req.Body;
+            string orderModelBlobName = orderModel.UserId + "-" + orderModel.OrderId + "-" + new Guid();
+            
+            var blob = blobClient.GetBlobClient(orderModelBlobName);
+            await blob.UploadAsync(req.Body);
+            return new OkObjectResult("Order Data uploaded to Blob Successfully");
         }
+    }
+
+    public class OrderModel
+    {
+        public int OrderId { get; set; }
+        public string UserId { get; set; }
+        public IEnumerable<Item> Items { get; set; }
+    }
+
+    public class Item
+    {
+        public int Id { get; set; }
+        public int Quantity { get; set; }
     }
 }
