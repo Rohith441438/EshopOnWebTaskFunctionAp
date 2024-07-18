@@ -46,7 +46,7 @@ namespace EshopOnWebTaskFunctionAp
                 //string containerName = "quickstartblobs" + Guid.NewGuid().ToString();
 
                 // Create the container and return a container client object
-                BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+                BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("order-item-reserver");
                 containerClient.CreateIfNotExistsAsync().Wait();
 
                 containerClient.SetAccessPolicy(Azure.Storage.Blobs.Models.PublicAccessType.Blob);
