@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/databases96b8",
+      "type": "storage.azure",
+      "connectionId": "AzureWebJobsStorage"
+    },
+    "cosmosdb1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/EshopOnWebDatabasesFunctionApp/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsEndPointUrl_07D3D12538",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.DocumentDB/databaseAccounts/eshoponwebdatabases",
+      "type": "cosmosdb.azure",
+      "connectionId": "ConnectionStrings:EndPointUrl"
+    }
+  }
+}
