@@ -1,8 +1,12 @@
 {
   "dependencies": {
-    "appInsights1": {
-      "type": "appInsights",
-      "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING"
+    "cosmosdb1": {
+      "type": "cosmosdb",
+      "connectionId": "ConnectionStrings:EndPointUrl"
+    },
+    "storage2": {
+      "type": "storage",
+      "connectionId": "AzureWebJobsStorage"
     },
     "storage1": {
       "type": "storage",

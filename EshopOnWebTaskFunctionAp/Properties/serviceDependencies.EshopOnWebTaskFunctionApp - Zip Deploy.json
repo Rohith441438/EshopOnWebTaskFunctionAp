@@ -1,12 +1,14 @@
 {
   "dependencies": {
-    "appInsights1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/microsoft.insights/components/PublicApiAppInsights",
-      "type": "appInsights.azure",
-      "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING"
-    },
     "storage1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/eshoponwebtaskfunctionap",
+      "type": "storage.azure",
+      "connectionId": "AzureWebJobsStorage"
+    },
+    "storage2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/EshopOnWebTaskFunctionApp/providers/Microsoft.ServiceLinker/linkers/AzureWebJobsStorage_7E69327C1E, /subscriptions/2c0a527b-86d3-4432-8c3a-3f821535a662/resourcegroups/functionapp-task/providers/Microsoft.Web/sites/EshopOnWebTaskFunctionApp/providers/Microsoft.ServiceLinker/linkers/AzureWebJobsStorage_965FF2C858",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/eshoponwebfunctask",
       "type": "storage.azure",
       "connectionId": "AzureWebJobsStorage"
     }
